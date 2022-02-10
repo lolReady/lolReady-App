@@ -22,7 +22,7 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import QRScanner from "../components/QRScanner";
 
-export default function SplashScreen({ route }) {
+export default function SplashScreen() {
   const { isConnection, token } = useSelector(state => state.auth)
   const dispatch = useDispatch()
 
@@ -60,7 +60,7 @@ export default function SplashScreen({ route }) {
   }
 
   useEffect(() => {
-    if (!token) return
+    if (token === -1) return
 
     const connTimeout = handleLogin()
 

@@ -1,3 +1,6 @@
+// ENV's
+import { TOKEN_NAME } from '@env';
+
 // React Navigation
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -5,6 +8,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // Redux's
 import { useDispatch, useSelector } from 'react-redux'
 import { setConnection } from '../slices/authSlice';
+
+
+// EXPO's
+import * as SecureStore from 'expo-secure-store';
 
 // Components
 import MatchFoundTimer from '../components/MatchFoundTimer';
@@ -29,6 +36,7 @@ export default function StartScreen() {
 
   Socket.on("disconnect", () => {
     dispatch(setConnection(false))
+    SecureStore.deleteItemAsync(TOKEN_NAME)
   })
 
 
